@@ -1,0 +1,240 @@
+*** Begin Patch
+*** Add File: README.md
++ # Chainsaw-Bar
++ 
++ Short one-line description: what Chainsaw-Bar does and who it helps.
++ 
++ ## Why
++ Explain the problem this project solves and the intended audience.
++ 
++ ## Features
++ - Feature 1
++ - Feature 2
++ 
++ ## Quickstart
++ 1. Clone:
++    git clone https://github.com/tonyder501/Chainsaw-Bar.git
++    cd Chainsaw-Bar
++ 
++ 2. Install / Setup (replace with relevant commands for your language):
++    # Example for Node.js
++    npm install
++    npm test
++ 
++ ## Example
++ Show a minimal code example demonstrating the main use-case.
++ 
++ ## Contributing
++ See CONTRIBUTING.md for contribution guidelines.
++ 
++ ## License
++ This project is licensed under the MIT License — see the LICENSE file for details.
++ 
++ ## Badges
++ Replace or remove these after CI and coverage are set up:
++ - Build: https://github.com/tonyder501/Chainsaw-Bar/actions/workflows/ci.yml/badge.svg
++ - License: https://img.shields.io/badge/license-MIT-blue
++ 
+*** End Patch
+*** Begin Patch
+*** Add File: LICENSE
++ MIT License
++ 
++ Copyright (c) 2025 tonyder501
++ 
++ Permission is hereby granted, free of charge, to any person obtaining a copy
++ of this software and associated documentation files (the "Software"), to deal
++ in the Software without restriction, including without limitation the rights
++ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++ copies of the Software, and to permit persons to whom the Software is
++ furnished to do so, subject to the following conditions:
++ 
++ The above copyright notice and this permission notice shall be included in all
++ copies or substantial portions of the Software.
++ 
++ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++ SOFTWARE.
++ 
+*** End Patch
+*** Begin Patch
+*** Add File: .gitignore
++ # Node
++ node_modules/
++ dist/
++ build/
++ npm-debug.log
++ 
++ # Python
++ __pycache__/
++ *.pyc
++ venv/
++ env/
++ 
++ # General
++ .env
++ .DS_Store
++ .idea/
++ .vscode/
++ *.log
++ 
+*** End Patch
+*** Begin Patch
+*** Add File: .github/workflows/ci.yml
++ name: CI
++ on:
++   push:
++     branches: [ main, repo-metadata ]
++   pull_request:
++     branches: [ main ]
++ 
++ jobs:
++   detect-and-test:
++     runs-on: ubuntu-latest
++     steps:
++       - uses: actions/checkout@v4
++       - name: Detect project type and run tests
++         run: |
++           if [ -f package.json ]; then
++             echo "Detected Node.js project"
++             node --version
++             npm ci
++             npm test || true
++             npm run lint || true
++           elif [ -f pyproject.toml ] || [ -f requirements.txt ]; then
++             echo "Detected Python project"
++             python -V
++             python -m pip install --upgrade pip
++             if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
++             if [ -f pyproject.toml ]; then pip install .; fi
++             pytest || true
++           else
++             echo "No recognized project files (package.json, pyproject.toml, requirements.txt)"
++           fi
++ 
+*** End Patch
+*** Begin Patch
+*** Add File: .github/dependabot.yml
++ version: 2
++ updates:
++   - package-ecosystem: "github-actions"
++     directory: "/"
++     schedule:
++       interval: "weekly"
++   - package-ecosystem: "npm"
++     directory: "/"
++     schedule:
++       interval: "weekly"
++     open-pull-requests-limit: 5
++ 
+*** End Patch
+*** Begin Patch
+*** Add File: CONTRIBUTING.md
++ # Contributing
++ 
++ Thanks for your interest in contributing!
++ 
++ How to contribute:
++ 1. Fork the repository.
++ 2. Create a feature branch:
++    git checkout -b feature/your-feature
++ 3. Make your changes and add tests where applicable.
++ 4. Run linters and tests locally.
++ 5. Push your branch and open a pull request against main.
++ 
++ PR checklist:
++ - [ ] Tests added/updated
++ - [ ] Linter/formatting passed
++ - [ ] CI passes
++ - [ ] Documentation updated (if applicable)
++ 
++ For major changes, please open an issue first to discuss.
++ 
+*** End Patch
+*** Begin Patch
+*** Add File: .github/ISSUE_TEMPLATE/bug_report.md
++ ---
++ name: Bug report
++ about: Create a report to help us improve
++ title: ''
++ labels: bug
++ assignees: ''
++ 
++ ---
++ 
++ **Describe the bug**
++ A clear and concise description of what the bug is.
++ 
++ **To Reproduce**
++ Steps to reproduce the behavior:
++ 1. ...
++ 2. ...
++ 3. ...
++ 
++ **Expected behavior**
++ What you expected to happen.
++ 
++ **Environment**
++ - OS:
++ - Version:
++ 
++ **Additional context**
++ Add any other context about the problem here.
++ 
+*** End Patch
+*** Begin Patch
+*** Add File: .github/PULL_REQUEST_TEMPLATE.md
++ ## Summary
++ 
++ Brief description of what this PR changes and why.
++ 
++ ## Changes
++ - Change 1
++ - Change 2
++ 
++ ## How to test
++ Steps to validate the change.
++ 
++ ## Checklist
++ - [ ] Tests added/updated
++ - [ ] Documentation updated
++ - [ ] Linting passed
++ 
+*** End Patch
+*** Begin Patch
+*** Add File: CODE_OF_CONDUCT.md
++ # Contributor Covenant Code of Conduct
++ 
++ This project follows the Contributor Covenant. Be kind and respectful in all interactions.
++ 
++ If you witness or experience unacceptable behavior, please contact the repository maintainers.
++ For the full text, see: https://www.contributor-covenant.org/
++ 
+*** End Patch
+*** Begin Patch
+*** Add File: SECURITY.md
++ # Security Policy
++ 
++ If you discover a security vulnerability, please contact me at <your-email@example.com> or open a private issue.
++ 
++ Include:
++ - Steps to reproduce
++ - Impact assessment
++ - Any suggested fixes
++ 
++ Please do not disclose details publicly until a fix is available.
++ 
+*** End Patch
+*** Begin Patch
+*** Add File: .github/CODEOWNERS
++ # Files and directories and their owners
++ /README.md @tonyder501
++ /.github/ @tonyder501
++ /src/ @tonyder501
++ 
+*** End Patch
+*** End Patch
